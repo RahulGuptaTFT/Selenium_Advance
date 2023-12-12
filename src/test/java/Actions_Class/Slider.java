@@ -25,6 +25,8 @@ import org.openqa.selenium.interactions.Actions;
          // For slider
          act.clickAndHold(slider).dragAndDropBy(slider,400,0).release().build().perform();
 
+//         act.clickAndHold(slider).moveByOffset(400,0).release().build().perform();
+
          Thread.sleep(3000);
          driver.quit();
      }

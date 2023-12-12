@@ -17,14 +17,11 @@ public class jsClick {
         JavascriptExecutor js = (JavascriptExecutor) driver;
 
         // Alert
-        //js.executeScript("alert('Hi Rahul');");
+//        js.executeScript("alert('Hi Rahul')");
 
         // SendKeys using Js
-        js.executeScript("document.getElementById(\"APjFqb\").value='rahul';");
+        js.executeScript("document.getElementById('APjFqb').value='rahul'");
 
-
-        // click using js
-        js.executeScript("document.querySelector('[name=\"btnK\"]').click();");
 
         String sText =  js.executeScript("return document.title;").toString();
 		System.out.println(sText);

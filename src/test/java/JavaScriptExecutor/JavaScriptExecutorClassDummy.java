@@ -7,73 +7,45 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.Test;
 
+import java.time.Duration;
+
 public class JavaScriptExecutorClassDummy {
     static WebDriver driver;
 
     @Test
-    public static void javaScriptExeMethod(){
+    public static void javaScriptExeMethod() throws InterruptedException {
 
-        driver = new ChromeDriver();
-        driver.get("https://www.gmail.com");
-        WebElement loginButton = driver.findElement(By.xpath("//*[@id='next']"));
+        WebDriver driver = new ChromeDriver();
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+        driver.get("https://Google.com");
 
-		/*
-		Syntax:
-		==>> JavascriptExecutor js = (JavascriptExecutor) driver;
-		==>> js.executeScript(Script,Arguments);
+        // 1) = To use JavascriptExecutor
+        JavascriptExecutor js = (JavascriptExecutor) driver;
 
-		script - The JavaScript to execute
-		Arguments - The arguments to the script.(Optional)
-		*/
-        JavascriptExecutor js = (JavascriptExecutor)driver;
+        // 2) = To print on console
+         js.executeScript("console.log('hello world')");
 
-        // To type text in Selenium WebDriver without using sendKeys() method
-        js.executeScript("document.getElementById('some id').value='someValue';");
-        js.executeScript("document.getElementById('Email').value='SoftwareTestingMaterial.com';");
+        // 3) = Systax ==> js.executeScript("")
 
-                /*
-                1) - To click a button in Selenium WebDriver using JavaScript
-                ==>> js.executeScript("arguments[0].click();", loginButton);
-                or
-                ==>> js.executeScript("document.getElementById('enter your element id').click();");
-                2) - To handle checkbox
-                ==>> js.executeScript("document.getElementById('enter element id').checked=false;");
-                */
+        // 4) = Print Title
+         String str= js.executeScript("return document.title ").toString();
+         System.out.println(str);
 
-		/* To generate Alert Pop window in selenium
-		==>> js.executeScript("alert('hello world');");*/
+         // 5) = Send Text
+         js.executeScript("document.getElementById('APjFqb').value='Random text here'");
 
-		/* to refresh browser window using Javascript
-		==>> js.executeScript("history.go(0)");*/
+         // 6) = Click
+        WebElement btn= driver.findElement(By.xpath("//div[@class='lJ9FBc']/center/input[1]"));
+        js.executeScript("arguments[0].click()",btn);
+        // other way ==>
+        // js.executeScript("window.setTimeout(()=>{arguments[0].click()},1000)",btn);
 
-		/* to get innertext of the entire webpage in Selenium
-		==>> String sText =  js.executeScript("return document.documentElement.innerText;").toString();
-		==>> System.out.println(sText);*/
+        // 7) = move to other page
+         js.executeScript("window.setTimeout(()=>{document.location='https://www.facebook.com'},2000)");
 
-		/* to get the Title of our webpage
-		==>> String sText =  js.executeScript("return document.title;").toString();
-		==>> System.out.println(sText);*/
-
-		/* to get the domain
-		==>> String sText =  js.executeScript("return document.domain;").toString();
-		==>> System.out.println(sText);*/
-
-		/* to get the URL of our webpage
-		==>> String sText =  js.executeScript("return document.URL;").toString();
-		==>> System.out.println(sText);*/
-
-		/* to perform Scroll on application using  Selenium
-		Vertical scroll - down by 50  pixels
-		==>> js.executeScript("window.scrollBy(0,50)");
-		 for scrolling till the bottom of the page we can use the code like
-		==>> js.executeScript("window.scrollBy(0,document.body.scrollHeight)");*/
-
-		/*  to click on a SubMenu which is only visible on mouse hover on Menu?
-		//Hover on Automation Menu on the MenuBar
-	        ==>> js.executeScript("$('ul.menus.menu-secondary.sf-js-enabled.sub-menu li').hover()");*/
-
-		/* to navigate to different page using Javascript?
-	        //Navigate to new Page
-	        ==>> js.executeScript("window.location = 'https://www.softwaretestingmaterial.com");*/
+         // 8) = Scroll the page
+        //js.executeScript("window.scrollBy(0,300)");
+        Thread.sleep(9000);
+        driver.quit();
     }
 }

@@ -37,7 +37,7 @@ public class POM_Test {
         //Click on Logout button
         dashboard.clickLogout();
 
-        //Close browser instance
+        //Close browser
         driver.quit();
     }
 }
